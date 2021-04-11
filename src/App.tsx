@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
 
-function App() {
+import SearchInput from './components/SearchInput'
+import { WeatherInfo } from './types/weather'
+const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [weatherLists, setWeathersList] = useState<WeatherInfo[]>([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app__container">
+      <div>
+        <SearchInput setWeathersList={setWeathersList}
+          setIsLoading={setIsLoading} />
+        {/* <WeatherInfo /> */}
+      </div>
     </div>
   );
 }
