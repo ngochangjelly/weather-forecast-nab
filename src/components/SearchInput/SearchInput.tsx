@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import debounce from 'lodash.debounce'
 import { searchLocation, getWeather } from '../../services/weather'
 import { WeatherInfo, SearchLocationResponse } from '../../types/weather'
-
+import { processWeatherListData } from '../../utils/processWatherListData'
 
 interface SearchInputProps {
   setWeathersList: React.Dispatch<React.SetStateAction<WeatherInfo[]>>
@@ -49,14 +49,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
         return
       }
       const selectedWoeid = e.target.getAttribute('data-woeid')
-      console.log(selectedWoeid);
       // setCityItems([])
       setIsLoading(true)
       setSearchValue('')
       const data = await getWeather({ woeid: selectedWoeid })
-      // const transformedWeatherList = transformWeatherResponse(data)
-      // setWeathersList(transformedWeatherList)
-      console.log(data)
+      const finalWeatherData = processWeatherListData(data)
+      setWeathersList(finalWeatherData)
     } finally {
       // setIsLoading(false)
     }
