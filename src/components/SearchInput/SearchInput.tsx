@@ -44,19 +44,18 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   const handleSelectCity = async (e: any) => {
     try {
-      // disable if not <li /> clicked
       if (e.target.getAttribute('data-element-type') === 'dropDown') {
         return
       }
       const selectedWoeid = e.target.getAttribute('data-woeid')
-      // setCityItems([])
+      setCityItems([])
       setIsLoading(true)
       setSearchValue('')
       const data = await getWeather({ woeid: selectedWoeid })
       const finalWeatherData = processWeatherListData(data)
       setWeathersList(finalWeatherData)
     } finally {
-      // setIsLoading(false)
+      setIsLoading(false)
     }
   }
 

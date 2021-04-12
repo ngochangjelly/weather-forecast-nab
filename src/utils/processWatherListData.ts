@@ -1,8 +1,6 @@
 import { WeatherInfo, SearchWeatherResponse, ConsolidatedWeatherItem } from '../types/weather'
 
 export const processWeatherListData = (data: SearchWeatherResponse) : WeatherInfo[] => {
-    console.log(data)
-    console.log(data.title)
     try {
         const {
             consolidated_weather,
@@ -31,10 +29,9 @@ export const processWeatherListData = (data: SearchWeatherResponse) : WeatherInf
             }
           }
         )
-    
+
         return finalData
       } catch (error) {
         return []
       }
-    // return []
 }
