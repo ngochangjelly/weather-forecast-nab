@@ -7,17 +7,9 @@ export const formatDateName = function (yyyymmddString: string): string {
   let year = +dateParts[0]
   let month = +dateParts[1]
   let day = +dateParts[2]
-  const dayNames = [
-      "Monday",
-      "Thuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-  ];
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   let today = new Date( year, month - 1, day );
-  let dayname = dayNames[today.getDay()-1];
+  let dayname = dayNames[today.getDay()];
   return dayname
 };
 

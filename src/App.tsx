@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './assets/scss/index.scss';
 import './App.scss';
 import WeatherDisplay from './components/WeatherDisplay'
 
@@ -13,7 +14,7 @@ const App: React.FC = () => {
         <div className="App__container__block--center">
           <SearchInput setWeathersList={setWeathersList}
             setIsLoading={setIsLoading} />
-          <WeatherDisplay weatherList={weatherList} />
+          {weatherList && weatherList.length && <WeatherDisplay weatherList={weatherList} />}
         </div>
       </div>
     </div>

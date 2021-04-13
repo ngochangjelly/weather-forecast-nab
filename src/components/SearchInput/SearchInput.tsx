@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce'
 import { searchLocation, getWeather } from '../../services/weather'
 import { WeatherInfo, SearchLocationResponse } from '../../types/weather'
 import { processWeatherListData } from '../../utils/processWatherListData'
-
+import './SearchInput.scss'
 interface SearchInputProps {
   setWeathersList: React.Dispatch<React.SetStateAction<WeatherInfo[]>>
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -62,7 +62,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <div className="w-100 position-relative">
       <div className="input-group">
-        <input
+        {/* <input
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           className="form-control"
@@ -70,7 +70,26 @@ const SearchInput: React.FC<SearchInputProps> = ({
           id="searchInput"
           data-testid="searchInput"
           placeholder="Enter city name..."
-        />
+        /> */}
+        <div id="cover">
+          <div className="tb">
+            <div className="td">
+              <input
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                type="text"
+                placeholder="Enter city name..."
+                required 
+              />
+            </div>
+            <div className="td" id="s-cover">
+              <button type="submit">
+                <div id="s-circle"></div>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
         {isSearching && (
           <div className="input-group-text">
             loading...

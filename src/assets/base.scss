@@ -1,0 +1,41 @@
+.body {
+    font-size: medium;
+}
+*
+{
+    outline: none;
+}
+
+html, body
+{
+    height: 100%;
+    min-height: 100%;
+}
+
+body
+{
+    margin: 0;
+    background-color: #ffd8d8;
+}
+
+.tb
+{
+    display: table;
+    width: 100%;
+}
+
+.td
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+input, button
+{
+    color: #fff;
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+}
