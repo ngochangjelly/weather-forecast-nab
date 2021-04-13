@@ -60,29 +60,20 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }
 
   return (
-    <div className="w-100 position-relative">
-      <div className="input-group">
-        {/* <input
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className="form-control"
-          list="cityDataList"
-          id="searchInput"
-          data-testid="searchInput"
-          placeholder="Enter city name..."
-        /> */}
-        <div id="cover">
-          <div className="tb">
-            <div className="td">
+    <div className="SearchInput">
+      <div className="SearchInput__wrapper">
+        <div className="SearchInput__block">
+          <div className="SearchInput__block__table">
+            <div className="SearchInput__block__table__data">
               <input
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"
                 placeholder="Enter city name..."
-                required 
+                required
               />
             </div>
-            <div className="td" id="s-cover">
+            <div className="SearchInput__block__table__data" id="s-cover">
               <button type="submit">
                 <div id="s-circle"></div>
                 <span></span>
@@ -91,26 +82,29 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </div>
         </div>
         {isSearching && (
-          <div className="input-group-text">
+          <div className="SearchInput__block__searching">
             loading...
           </div>
         )}
       </div>
-      <ul
-        data-element-type="dropDown"
-        onClick={handleSelectCity}
-      >
-        {cityItems.map(({ title, woeid }) => {
-          return (
-            <li
-              key={woeid}
-              data-woeid={woeid}
-            >
-              {title}
-            </li>
-          )
-        })}
-      </ul>
+      {cityItems && cityItems.length > 0 && <div className="SearchInput__dropdown">
+        <ul
+          className="SearchInput__dropdown__list"
+          data-element-type="dropDown"
+          onClick={handleSelectCity}
+        >
+          {cityItems.map(({ title, woeid }) => {
+            return (
+              <li
+                key={woeid}
+                data-woeid={woeid}
+              >
+                {title}
+              </li>
+            )
+          })}
+        </ul>
+      </div>}
     </div>
   )
 }

@@ -1,22 +1,51 @@
+@import '../../assets/base.scss';
 .WeatherDisplay {
   width: 100%;
+  display: flex;
+  justify-content: center;
   &__container {
-    width: 100%;
+    width: $weatherDisplayWidth;
     display: flex;
     flex-direction: column;
     &__list {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       width: 100%;
-      &__icon {
-        width: 64px;
-        height: 64px;
+      line-height: 2;
+      flex-wrap: wrap;
+      &__item {
+        margin-bottom: 10px;
+        background-color: white;
+        min-width: 100px;
+        padding: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        position: relative;
+        -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        border-radius: 16px;
+        -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+        box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+        // margin-right: 15px;
+        &__icon {
+          width: 64px;
+          height: 64px;
+        }
       }
     }
     &__current {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      @media (min-width: $breakpoint-mobile) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      line-height: 2;
       &__left {
         &__location {
           font-size: large;
