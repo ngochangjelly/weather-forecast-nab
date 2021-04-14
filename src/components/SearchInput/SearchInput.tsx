@@ -63,27 +63,15 @@ const SearchInput: React.FC<SearchInputProps> = ({
     <div className="SearchInput">
       <div className="SearchInput__wrapper">
         <div className="SearchInput__block">
-          <div className="SearchInput__block__table">
-            <div className="SearchInput__block__table__data">
-              <input
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                type="text"
-                placeholder="Enter city name..."
-                required
-              />
-            </div>
-            <div className="SearchInput__block__table__data" id="s-cover">
-              <button type="submit">
-                <div id="s-circle"></div>
-                <span></span>
-              </button>
-            </div>
+          <div className="SearchInput__block__search__container">
+            <input value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Enter city name..."
+              className="SearchInput__block__search__input" type="text" />
           </div>
         </div>
         {isSearching && (
-          <div className="SearchInput__block__searching">
-            loading...
+          <div className="SearchInput__block__searching loader">
           </div>
         )}
       </div>

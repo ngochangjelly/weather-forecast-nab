@@ -8,16 +8,14 @@ interface WeatherDisplayProps {
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherList }) => {
   const [currentWeather, setCurrentWeather] = useState<WeatherInfo | null>(weatherList[0])
   useEffect(() => {
-    setCurrentWeather(null)
-    console.log('***************  updated ')
     if (!currentWeather) {
       setCurrentWeather(weatherList[0])
     }
-  });
+  }, [weatherList, currentWeather]);
   if (!currentWeather) {
     setCurrentWeather(weatherList[0])
   }
-  
+
   const handleSelectWeather = (id: number) => {
     if (weatherList[id]) {
       setCurrentWeather(weatherList[id])
@@ -53,7 +51,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherList }) => {
         <div className="WeatherDisplay__container__list" data-element-type="weatherList">
           {
             weatherList.map((item, id) => {
-              return <div key={`weather-item-`} onClick={() => handleSelectWeather(id)} className="WeatherDisplay__container__list__item">
+              return <div key={`weather-item-${id}`} onClick={() => handleSelectWeather(id)} className="WeatherDisplay__container__list__item">
                 <div className="WeatherDisplay__container__list__item__header">
                   {formatDateName(item.applicableDate)}
                 </div>

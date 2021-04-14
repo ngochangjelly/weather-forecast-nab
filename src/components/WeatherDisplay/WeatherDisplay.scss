@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   &__container {
-    width: $weatherDisplayWidth;
+    width: $weatherDisplayWidthLarge;
     display: flex;
     flex-direction: column;
     &__list {
@@ -12,12 +12,20 @@
       width: 100%;
       line-height: 2;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      margin-top: 20px;
+      @media (min-width: $weatherDisplayMediumWidth) {
+        justify-content: center;
+      }
+      @media (min-width: $weatherDisplayWidthLarge) {
+        justify-content: center;
+      }
       &__item {
         background-color: white;
-        min-width: 100px;
-        padding: 20px;
-        margin: 10px;
+        width: 140px;
+        margin: 5px 5px 10px;
+        padding: 10px;
+        box-sizing: border-box;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -31,23 +39,31 @@
         transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
         border-radius: 16px;
         -webkit-box-shadow: 5px 5px 10px #e1e1e3, -15px -15px 27px #ffffff;
-        box-shadow: 5px 5px 10px  #e1e1e3, -15px -15px 27px #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         @include ripple;
         &__icon {
           width: 64px;
           height: 64px;
         }
+        &__header {
+          text-align: center;
+          font-weight: bold;
+        }
       }
     }
     &__current {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       @media (min-width: $breakpoint-mobile) {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
       }
       line-height: 2;
       &__left {
+        text-align: center;
+        @media (min-width: $breakpoint-mobile) {
+          text-align: left;
+        }
         &__location {
           font-size: large;
           font-weight: bold;
