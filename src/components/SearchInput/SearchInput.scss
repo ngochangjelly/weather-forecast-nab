@@ -1,19 +1,17 @@
 @import '../../assets/base.scss';
 .SearchInput {
-  width: 100%;
   display: contents;
+  width: $searchInputWidth;
+  height: $searchInputHeight;
   &__block {
-    position: absolute;
-    top: 15%;
-    left: 0;
-    right: 0;
-    width: $searchInputWidth;
     padding: 15px;
-    margin: -83px auto 0 auto;
+    margin: 20px auto 0 auto;
     background-color: #ff7575;
     border-radius: 20px;
     box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
     transform: scale(0.6);
+    width: 50%;
+    min-width: 150px;
     &__table {
       display: table;
       width: 100%;
@@ -26,9 +24,13 @@
   &__dropdown {
     width: 100%;
     position: absolute;
-    top: calc(20%);
-    width: $searchInputWidth;
+    top: 100px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
     &__list {
+      border: 1px rgb(165, 164, 164) solid;
+      width: $searchInputWidth;
       background-color: white;
       border-radius: 20px;
       padding: 20px;
@@ -161,4 +163,117 @@ button span:after {
   border-radius: 4px;
   box-shadow: 0 10px 20px -5px rgba(255, 117, 117, 0.86);
   z-index: 125;
+}
+// search box css
+.search{
+  position:absolute;
+  left:0;
+  right:0;
+  margin:auto;
+  top:50%;
+  transform:translateY(-50%);
+  width:100%;
+  text-align:center;
+  overflow:hidden;
+  &_bar{
+    width:280px;
+    position:relative;
+    margin: 0 auto;
+    input[type="text"]{
+      width:15px;
+      background:transparent;
+      transition:border .3s 0s, width .2s .3s cubic-bezier(0.225, 0.010, 0.475, 1.010), text-indent .2s .3s;
+      padding: 20px;
+      border-color:#448996;
+      text-indent:30px;
+      outline:none;
+      border:0px solid #448996;
+      font-size: 12px;
+      color:  #A8A952;
+      border-radius:5px;
+      //text-transform:uppercase;
+      font-family: 'Nunito', sans-serif;
+
+    }
+    ::-webkit-input-placeholder { /* Safari, Chrome and Opera */
+      color: #448996;
+      font-weight:400;
+      font-family: 'Nunito', sans-serif;
+    }
+     ::-moz-input-placeholder { /* Safari, Chrome and Opera */
+      color: #448996;
+      font-weight:400;
+      font-family: 'Nunito', sans-serif;
+    }
+     ::-o-input-placeholder { /* Safari, Chrome and Opera */
+      color: #448996;
+      font-weight:400;
+      font-family: 'Nunito', sans-serif;
+    }
+    input[type="checkbox"]{
+      display:none;
+    }
+    input[type="checkbox"]:checked + label + input{
+      width: 230px;
+      border: 5px solid #448996;
+      text-indent:0px;
+    }
+    input[type="checkbox"]:checked + label i{
+      right:0px;
+      transform: translateY(-50%) translateX(50%) rotate(360deg) scale(0);
+      color: #448996;
+      &:hover{
+        //background:white;
+      }
+    }
+    input[type="checkbox"]:checked + label .last{
+      left:220px;
+      transform: translateY(-50%) rotate(360deg) scale(1);
+      &:hover{
+        //background:white;
+      }
+    }
+    input[type="checkbox"]:checked + label p{
+      top: 50%;
+      transition:all .3s .45s;
+    }
+    input[type="checkbox"]:not(checked) + label p{
+      top: -50%;
+      transition:all .3s 0s;
+    }
+    .last{
+      -webkit-transform: translateY(-50%) rotate(0deg) scale(0);
+      transform: translateY(-50%) rotate(0deg) scale(0);
+    }
+    i{
+      position: absolute;
+      font-size: 30px;
+      top: 50%;
+      transform: translateY(-50%) translateX(50%) rotate(0deg) scale(1);
+      cursor: pointer;
+      z-index: 2;
+      margin: auto;
+      border-radius: 4px;
+      width: 56px;
+      right: 50%;
+      height: 54px;
+      background: transparent;
+      transition: right .3s .3s, transform .3s .3s, color .3s;
+      line-height: 60px;
+      color: #A8A952;
+      &:hover{
+        color:#448996;
+      }
+    }
+    p{
+      position: absolute;
+      margin: 0;
+      right: 52px;
+      color: #448996;
+      font-weight: 700;
+      font-size: 30px;
+      top: -50%;
+      transform: translateY(-50%) rotate(0deg) scale(1);
+    }
+  }
 }

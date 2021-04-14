@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WeatherInfo } from '../../types/weather'
 import './WeatherDisplay.scss'
 import { formatDateName, formatDegree } from '../../utils/date'
@@ -6,10 +6,18 @@ interface WeatherDisplayProps {
   weatherList: WeatherInfo[]
 }
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherList }) => {
-  const [currentWeather, setCurrentWeather] = useState<WeatherInfo>(weatherList[0])
+  const [currentWeather, setCurrentWeather] = useState<WeatherInfo | null>(weatherList[0])
+  useEffect(() => {
+    setCurrentWeather(null)
+    console.log('***************  updated ')
+    if (!currentWeather) {
+      setCurrentWeather(weatherList[0])
+    }
+  });
   if (!currentWeather) {
     setCurrentWeather(weatherList[0])
   }
+  
   const handleSelectWeather = (id: number) => {
     if (weatherList[id]) {
       setCurrentWeather(weatherList[id])
