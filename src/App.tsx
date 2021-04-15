@@ -12,9 +12,9 @@ const App: React.FC = () => {
     <div className="App">
       <div className="App__container">
         <div className="App__container__block">
-          <div className="App__container__block--center">
+          <div className="App__container__block--start">
             <SearchInput setWeathersList={setWeathersList}
-              setIsLoading={setIsLoading} />
+              setIsLoading={setIsLoading} isLoading={isLoading}/>
             {weatherList && weatherList.length > 0 && <WeatherDisplay weatherList={weatherList} />}
           </div>
         </div>

@@ -1,28 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, RefObject } from 'react'
 
-export const useOnClickOutside = (ref: any, handler: Function) => {
-  useEffect(
-    () => {
-      const listener = (event: MouseEvent|TouchEvent): void  => {
-        // Do nothing if clicking ref's element or descendent elements
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
-        handler(event);
-      };
-      document.addEventListener("mousedown", listener);
-      document.addEventListener("touchstart", listener);
-      return () => {
-        document.removeEventListener("mousedown", listener);
-        document.removeEventListener("touchstart", listener);
-      };
-    },
-    // Add ref and handler to effect dependencies
-    // It's worth noting that because passed in handler is a new ...
-    // ... function on every render that will cause this effect ...
-    // ... callback/cleanup to run every render. It's not a big deal ...
-    // ... but to optimize you can wrap handler in useCallback before ...
-    // ... passing it into this hook.
-    [ref, handler]
-  );
+type AnyEvent = MouseEvent | TouchEvent
+// https://usehooks-typescript.com/react-hook/use-on-click-outside
+function useOnClickOutside<T extends HTMLElement = HTMLElement>(
+  ref: RefObject<T>,
+  handler: (event: AnyEvent) => void,
+) {
+  useEffect(() => {
+    const listener = (event: AnyEvent) => {
+      const el = ref?.current
+
+      // Do nothing if clicking ref's element or descendent elements
+      if (!el || el.contains(event.target as Node)) {
+        return
+      }
+
+      handler(event)
+    }
+
+    document.addEventListener(`mousedown`, listener)
+    document.addEventListener(`touchstart`, listener)
+
+    return () => {
+      document.removeEventListener(`mousedown`, listener)
+      document.removeEventListener(`touchstart`, listener)
+    }
+
+    // Reload only if ref or handler changes
+  }, [ref, handler])
 }
+
+export default useOnClickOutside

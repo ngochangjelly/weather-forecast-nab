@@ -1,26 +1,33 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef } from 'react'
 import debounce from 'lodash.debounce'
 import { searchLocation, getWeather } from '../../services/weather'
 import { WeatherInfo, SearchLocationResponse } from '../../types/weather'
 import { processWeatherListData } from '../../utils/processWatherListData'
 import './SearchInput.scss'
+import useOnClickOutside from '../../hooks/useClickOutside'
 interface SearchInputProps {
   setWeathersList: React.Dispatch<React.SetStateAction<WeatherInfo[]>>
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  isLoading: boolean
 }
 const SearchInput: React.FC<SearchInputProps> = ({
   setWeathersList,
-  setIsLoading
+  setIsLoading,
+  isLoading
 }) => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [cityItems, setCityItems] = useState<SearchLocationResponse>([])
   const [isSearching, setIsSearching] = useState<boolean>(false)
+  const [isModalOpen, setModalOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setModalOpen(false));
 
   const debouncedFetchLocationList = useMemo(
     () =>
       debounce(async (searchValue: string) => {
         try {
           if (searchValue.trim() !== '') {
+            setModalOpen(true)
             setIsSearching(true)
             const data = await searchLocation({
               type: 'text',
@@ -62,36 +69,38 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <div className="SearchInput">
       <div className="SearchInput__wrapper">
-        <div className="SearchInput__block">
-          <div className="SearchInput__block__search__container">
+        <div className="SearchInput__wrapper__title">Search weather of cities around the world</div>
+        <div className="SearchInput__wrapper__block">
+          <div className="SearchInput__wrapper__block__search__container">
             <input value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Enter city name..."
-              className="SearchInput__block__search__input" type="text" />
+              className="SearchInput__wrapper__block__search__input" type="text" />
           </div>
         </div>
-        {isSearching && (
-          <div className="SearchInput__block__searching loader">
+        {(isSearching || isLoading) && (
+          <div className="SearchInput__wrapper__block__searching loader">
           </div>
         )}
       </div>
-      {cityItems && cityItems.length > 0 && <div className="SearchInput__dropdown">
-        <ul
+      {isModalOpen && cityItems && cityItems.length > 0 && <div className="SearchInput__dropdown">
+        <div
           className="SearchInput__dropdown__list"
           data-element-type="dropDown"
           onClick={handleSelectCity}
+          ref={ref}
         >
           {cityItems.map(({ title, woeid }) => {
             return (
-              <li
+              <div
                 key={woeid}
                 data-woeid={woeid}
               >
                 {title}
-              </li>
+              </div>
             )
           })}
-        </ul>
+        </div>
       </div>}
     </div>
   )
