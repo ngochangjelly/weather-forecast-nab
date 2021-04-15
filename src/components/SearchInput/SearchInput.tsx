@@ -70,7 +70,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <div className="SearchInput">
       <div className="SearchInput__wrapper">
-        <div className="SearchInput__wrapper__title">Search weather of cities<br/> around the world</div>
+        <div className="SearchInput__wrapper__title">Search weather of cities<br /> around the world</div>
         <div className="SearchInput__wrapper__block">
           <div className="SearchInput__wrapper__block__search__container">
             <input value={searchValue}
@@ -83,7 +83,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           <Loader />
         )}
       </div>
-      {isModalOpen && cityItems && cityItems.length > 0 && <div className="SearchInput__dropdown">
+      {isModalOpen && cityItems && cityItems.length > 0 && <ul className="SearchInput__dropdown">
         <div
           className="SearchInput__dropdown__list"
           data-element-type="dropDown"
@@ -92,16 +92,16 @@ const SearchInput: React.FC<SearchInputProps> = ({
         >
           {cityItems.map(({ title, woeid }) => {
             return (
-              <div
+              <li
                 key={woeid}
                 data-woeid={woeid}
               >
                 {title}
-              </div>
+              </li>
             )
           })}
         </div>
-      </div>}
+      </ul>}
     </div>
   )
 }

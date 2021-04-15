@@ -16,7 +16,7 @@ export interface WeatherInfo {
   // predictability: number
 }
 
-export type SearchLocationResponse = {
+export interface SearchLocationResponse {
   latt_long: string,
   location_type: string,
   title: string,
