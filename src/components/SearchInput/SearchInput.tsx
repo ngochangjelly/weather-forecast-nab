@@ -5,6 +5,7 @@ import { WeatherInfo, SearchLocationResponse } from '../../types/weather'
 import { processWeatherListData } from '../../utils/processWatherListData'
 import './SearchInput.scss'
 import useOnClickOutside from '../../hooks/useClickOutside'
+import Loader from '../common/Loader'
 interface SearchInputProps {
   setWeathersList: React.Dispatch<React.SetStateAction<WeatherInfo[]>>
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
@@ -69,7 +70,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <div className="SearchInput">
       <div className="SearchInput__wrapper">
-        <div className="SearchInput__wrapper__title">Search weather of cities around the world</div>
+        <div className="SearchInput__wrapper__title">Search weather of cities<br/> around the world</div>
         <div className="SearchInput__wrapper__block">
           <div className="SearchInput__wrapper__block__search__container">
             <input value={searchValue}
@@ -79,8 +80,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </div>
         </div>
         {(isSearching || isLoading) && (
-          <div className="SearchInput__wrapper__block__searching loader">
-          </div>
+          <Loader />
         )}
       </div>
       {isModalOpen && cityItems && cityItems.length > 0 && <div className="SearchInput__dropdown">

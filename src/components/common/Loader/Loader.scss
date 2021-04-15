@@ -1,9 +1,9 @@
-.loader,
-.loader:before,
-.loader:after {
+.Loader,
+.Loader:before,
+.Loader:after {
   border-radius: 50%;
 }
-.loader {
+.Loader {
   color: #ffffff;
   font-size: 11px;
   text-indent: -99999em;
@@ -19,12 +19,12 @@
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
-.loader:before,
-.loader:after {
+.Loader:before,
+.Loader:after {
   position: absolute;
   content: '';
 }
-.loader:before {
+.Loader:before {
   width: 5.2em;
   height: 10.2em;
   background: black;
@@ -36,7 +36,7 @@
   -webkit-animation: load2 2s infinite ease 1.5s;
   animation: load2 2s infinite ease 1.5s;
 }
-.loader:after {
+.Loader:after {
   width: 5.2em;
   height: 10.2em;
   background: black;

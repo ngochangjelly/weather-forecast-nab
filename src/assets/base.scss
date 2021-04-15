@@ -40,20 +40,20 @@ $searchInputHeight: 90px;
 $weatherDisplayWidth: 850px;
 $weatherDisplayMediumWidth: 700px;
 $weatherDisplayWidthLarge: 900px;
-$breakpoint-mobile: 768px;
-$focus-color: rgb(255, 225, 169);
-$active-color: rgb(255, 225, 169);
+$breakpointMobile: 768px;
+$focusColor: rgb(255, 225, 169);
+$activeColor: rgb(255, 225, 169);
 
 /* Ripple effect */
 @mixin ripple {
   background-position: center;
   transition: background 0.02s;
   &:hover {
-    background: $focus-color
-      radial-gradient(circle, transparent 1%, $focus-color 1%) center/1500%;
+    background: $focusColor
+      radial-gradient(circle, transparent 1%, $focusColor 1%) center/1500%;
   }
   &:active {
-    background-color: $active-color;
+    background-color: $activeColor;
     background-size: 100%;
     transition: background 0s;
   }
