@@ -16,12 +16,20 @@ export interface WeatherInfo {
   // predictability: number
 }
 
-export interface SearchLocationResponse {
+export type SearchLocationResponse = {
+  distance?: number,
   latt_long: string,
   location_type: string,
   title: string,
   woeid: number
 }[]
+
+export type SearchWeatherResponseParent = {
+  latt_long: string,
+  location_type: string,
+  title: string,
+  woeid: number
+}
 
 export type SourceItem  = {
   crawl_rate: number,
@@ -53,7 +61,7 @@ export interface SearchWeatherResponse {
   title: string,
   latt_long: string,
   location_type: string,
-  parent: SearchLocationResponse,
+  parent: SearchWeatherResponseParent,
   sources: SourceItem[],
   sun_rise: string,
   sun_set: string,
