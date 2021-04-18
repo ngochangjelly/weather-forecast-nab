@@ -1,5 +1,5 @@
-// @ts-ignore
-import { SearchWeatherResponse, SearchLocationResponse } from '../types/weather'
+
+import { SearchWeatherResponse, SearchLocationResponse, WeatherInfo } from '../types/weather'
 
 export const weatherListResponse: SearchWeatherResponse = {
   consolidated_weather: [
@@ -154,7 +154,62 @@ export const weatherListResponse: SearchWeatherResponse = {
   title: 'New Delhi',
   woeid: 28743736,
 }
-
+export const processedWeatherListResponse: WeatherInfo[] = [
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Light Cloud',
+    theTemp: 39.09,
+    minTemp: 26.805,
+    maxTemp: 39.66,
+    applicableDate: '2021-04-15',
+    weatherStateAbbr: 'lc',
+  },
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Showers',
+    theTemp: 38.3,
+    minTemp: 26.95,
+    maxTemp: 39.72,
+    applicableDate: '2021-04-16',
+    weatherStateAbbr: 's',
+  },
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Heavy Cloud',
+    theTemp: 34.58,
+    minTemp: 24.61,
+    maxTemp: 35.945,
+    applicableDate: '2021-04-17',
+    weatherStateAbbr: 'hc',
+  },
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Clear',
+    theTemp: 35.765,
+    minTemp: 22.975,
+    maxTemp: 38.010000000000005,
+    applicableDate: '2021-04-18',
+    weatherStateAbbr: 'c',
+  },
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Light Cloud',
+    theTemp: 37.455,
+    maxTemp: 40.105000000000004,
+    minTemp: 25.990000000000002,
+    applicableDate: '2021-04-19',
+    weatherStateAbbr: 'lc',
+  },
+  {
+    title: 'New Delhi',
+    weatherStateName: 'Heavy Cloud',
+    theTemp: 38.03,
+    minTemp: 25.725,
+    maxTemp: 38.97,
+    applicableDate: '2021-04-20',
+    weatherStateAbbr: 'hc',
+  },
+]
 export const locationListResponseLattlongQuery: SearchLocationResponse = [
   {
     distance: 1836,
@@ -233,5 +288,135 @@ export const locationListResponseTextQuery: SearchLocationResponse = [
     location_type: 'City',
     title: 'Ho Chi Minh City',
     woeid: 1252431,
+  }
+]
+
+export const locationListResponseLattLongQuery: SearchLocationResponse = [
+  {
+    distance: 10294,
+    latt_long: "10.759180,106.662498",
+    location_type: "City",
+    title: "Ho Chi Minh City",
+    woeid: 1252431,
+  },
+  {
+    distance: 748043,
+    latt_long: "13.753330,100.504822",
+    location_type: "City",
+    title: "Bangkok",
+    woeid: 1225448,
+  },
+  {
+    distance: 969749,
+    latt_long: "7.88997,98.388458",
+    location_type: "City",
+    title: "Phuket",
+    woeid: 1226113,
+  },
+  {
+    distance: 1016092,
+    latt_long: "3.152480,101.717270",
+    location_type: "City",
+    title: "Kuala Lumpur",
+    woeid: 1154781,
+  },
+  {
+    distance: 1106444,
+    latt_long: "1.293780,103.853256",
+    location_type: "City",
+    title: "Singapore",
+    woeid: 1062617,
+  },
+  {
+    distance: 1137010,
+    latt_long: "21.031950,105.819908",
+    location_type: "City",
+    title: "Hà Nội",
+    woeid: 1236594,
+  },
+  {
+    distance: 1317831,
+    latt_long: "16.803890,96.154694",
+    location_type: "City",
+    title: "Yangon",
+    woeid: 1015662,
+  },
+  {
+    distance: 1509690,
+    latt_long: "22.411200,114.153999",
+    location_type: "City",
+    title: "Hong Kong",
+    woeid: 2165352,
+  },
+  {
+    distance: 1520101,
+    latt_long: "22.546789,114.112556",
+    location_type: "City",
+    title: "Shenzhen",
+    woeid: 2161853,
+  },
+  {
+    distance: 1530402,
+    latt_long: "23.107389,113.267616",
+    location_type: "City",
+    title: "Guangzhou",
+    woeid: 2161838,
+  }
+]
+
+export const weatherList: WeatherInfo[] = [
+  {
+    applicableDate: "2021-04-17",
+    maxTemp: 12.379999999999999,
+    minTemp: 6.55,
+    theTemp: 11.64,
+    title: "Philadelphia",
+    weatherStateAbbr: "hc",
+    weatherStateName: "Heavy Cloud",
+  },
+  {
+    applicableDate: "2021-04-18",
+    maxTemp: 15.865,
+    minTemp: 7.215,
+    theTemp: 15.44,
+    title: "Philadelphia",
+    weatherStateAbbr: "hc",
+    weatherStateName: "Heavy Cloud",
+  },
+  {
+    applicableDate: "2021-04-19",
+    maxTemp: 17.84,
+    minTemp: 8.585,
+    theTemp: 16.34,
+    title: "Philadelphia",
+    weatherStateAbbr: "hc",
+    weatherStateName: "Heavy Cloud",
+  },
+  {
+    applicableDate: "2021-04-20",
+    maxTemp: 22.189999999999998,
+    minTemp: 9.605,
+    theTemp: 19.865000000000002,
+    title: "Philadelphia",
+    weatherStateAbbr: "lc",
+    weatherStateName: "Light Cloud",
+  },
+  {
+    applicableDate: "2021-04-21",
+    maxTemp: 20.315,
+    minTemp: 6.165,
+    theTemp: 19.275,
+    title: "Philadelphia",
+    weatherStateAbbr: "lr",
+    weatherStateName: "Light Rain",
+  },
+  {
+    applicableDate: "2021-04-22",
+    maxTemp: 10.18,
+    minTemp: 2.585,
+    theTemp: 8.27,
+    title: "Philadelphia",
+    weatherStateAbbr: "s",
+    weatherStateName: "Showers",
   }
 ]

@@ -1,9 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+
 import { weatherListResponse, locationListResponseTextQuery, locationListResponseLattlongQuery } from '../mocks/weather'
 import {getWeather, searchLocation} from '../services/weather'
-import { render, waitFor, cleanup } from '@testing-library/react';
-
-afterEach(cleanup);
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -16,7 +14,6 @@ it('should fetch location list data by query type text', async() => {
 })
 it('should fetch location list data by query type lattlong', async() => {
   mockedAxios.get.mockResolvedValue({data: locationListResponseLattlongQuery})
-  // search for new delhi with woeid code 28743736
   const data = await searchLocation({ type: 'lattlong', value: '36.96,-122.02' })
   expect(data).toBe(locationListResponseLattlongQuery)
 })

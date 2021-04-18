@@ -3,17 +3,15 @@
 }
 * {
   outline: none;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
   height: 100%;
   min-height: 100%;
-}
-
-body {
   margin: 0;
-  // background-color: #ffd8d8;
 }
 
 .tb {
@@ -39,6 +37,7 @@ $searchInputWidth: 350px;
 $searchInputHeight: 90px;
 $weatherDisplayWidth: 850px;
 $weatherDisplayMediumWidth: 700px;
+$loaderSize: 10em;
 $weatherDisplayWidthLarge: 900px;
 $breakpointMobile: 768px;
 $focusColor: rgb(255, 225, 169);

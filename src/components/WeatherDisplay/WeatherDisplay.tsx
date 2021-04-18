@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { WeatherInfo } from '../../types/weather'
+
 import './WeatherDisplay.scss'
+import { ELEMENT_TEST_IDS } from '../../constants'
+import { WeatherInfo } from '../../types/weather'
 import { formatDateName, formatDegree } from '../../utils/date'
 interface WeatherDisplayProps {
   weatherList: WeatherInfo[]
@@ -11,17 +13,15 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherList }) => {
     setCurrentWeather(weatherList[0])
   }, [weatherList]);
 
-  const handleSelectWeather = (id: number) => {
-    if (weatherList[id]) {
-      setCurrentWeather(weatherList[id])
-    }
+  const handleSelectWeather = (item: WeatherInfo) => {
+    setCurrentWeather(item)
   }
   return (
     <div className="WeatherDisplay">
       <div className="WeatherDisplay__container">
-        <div className="WeatherDisplay__container__current">
+        <div className="WeatherDisplay__container__current" data-testid={ELEMENT_TEST_IDS.CURRENT_WEATHER}>
           <div className="WeatherDisplay__container__current__left">
-            <div className="WeatherDisplay__container__current__left__location">
+            <div className="WeatherDisplay__container__current__left__location" data-testid={ELEMENT_TEST_IDS.CURRENT_WEATHER_TITLE}>
               {currentWeather ? currentWeather.title : ''}
             </div>
             <div className="WeatherDisplay__container__current__left__time">
@@ -43,15 +43,17 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherList }) => {
             </div>
           </div>
         </div>
-        <div className="WeatherDisplay__container__list" data-element-type="weatherList">
+        <div className="WeatherDisplay__container__list" data-element-type="weatherList" data-testid={ELEMENT_TEST_IDS.WEATHER_LIST}>
           {
             weatherList.map((item, id) => {
-              return <div key={`weather-item-${id}`} onClick={() => handleSelectWeather(id)} className={item === currentWeather ? "WeatherDisplay__container__list__item WeatherDisplay__container__list__item--active" : "WeatherDisplay__container__list__item"}>
+              return <div key={`weather-item-${id}`}
+                data-testid={ELEMENT_TEST_IDS.WEATHER_LIST_ITEM}
+                onClick={() => handleSelectWeather(item)} className={item === currentWeather ? "WeatherDisplay__container__list__item WeatherDisplay__container__list__item--active" : "WeatherDisplay__container__list__item"}>
                 <div className="WeatherDisplay__container__list__item__header">
                   {formatDateName(item.applicableDate)}
                 </div>
                 <div className="WeatherDisplay__container__list__item__icon">
-                  {item && item.weatherStateAbbr && <img src={`https://www.metaweather.com/static/img/weather/png/64/${item.weatherStateAbbr}.png`} alt="" />}
+                  {item.weatherStateAbbr && <img src={`https://www.metaweather.com/static/img/weather/png/64/${item.weatherStateAbbr}.png`} alt="" />}
                 </div>
                 <div className="WeatherDisplay__container__list__item__body">
                   <div className="WeatherDisplay__container__list__item__body__state">{item.weatherStateName}</div>

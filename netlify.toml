@@ -1,0 +1,6 @@
+[[redirects]]
+force = true
+from = "/api/*"
+status = 200
+to = "https://www.metaweather.com/api/:splat"
+headers = {X-From = "Netlify"}

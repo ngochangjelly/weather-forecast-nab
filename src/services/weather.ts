@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { SearchLocationResponse, SearchWeatherResponse } from '../types/weather'
 
 type SearchWeatherParams = {
@@ -8,9 +9,6 @@ interface searchLocationParams {
   type: string,
   value?: string
 }
-
-const LOCATION_QUERY_BY_QUERY_URL = (query: string) => `/api/location/search/?query=(${query})`
-const LOCATION_QUERY_BY_LAT_LONG_URL = (latt: string, long: string) => `/api/location/search/?lattlong=(${latt}),(${long})`
 
 export const getWeather = async ({
     woeid,

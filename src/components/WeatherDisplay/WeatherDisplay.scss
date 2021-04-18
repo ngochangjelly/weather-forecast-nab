@@ -12,8 +12,9 @@
       width: 100%;
       line-height: 2;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: center;
       margin-top: 20px;
+      padding-bottom: 20px;
       @media (min-width: $weatherDisplayMediumWidth) {
         justify-content: center;
       }

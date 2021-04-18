@@ -1,19 +1,11 @@
 export interface WeatherInfo {
-  // id: number
   title: string,
   applicableDate:	string,
   weatherStateName:	string,
   weatherStateAbbr:	string,
-  // windSpeed:	number,
-  // windDirection:	number,
-  // windDirectionCompass: string,
   theTemp: number,
   minTemp: number,
   maxTemp: number,
-  // airPressure:	number,
-  // humidity: number,
-  // visibility: number,
-  // predictability: number
 }
 
 export type SearchLocationResponse = {
@@ -70,3 +62,24 @@ export interface SearchWeatherResponse {
   timezone_name: string,
   woeid: number
 }[]
+
+export interface wrongSearchWeatherResponse {
+  consolidated_weather: ConsolidatedWeatherItem[],
+  title: string,
+  latt_long: string,
+  location_type: string,
+  parent: SearchWeatherResponseParent,
+  sources: SourceItem[],
+  sun_rise: string,
+  sun_set: string,
+  time: string,
+  timezone: string,
+  timezone_name: string,
+  woeid: number,
+  strange_attribute: null
+}
+
+export type LattLong = {
+  latt: number,
+  long: number
+}
